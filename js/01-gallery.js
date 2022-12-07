@@ -41,7 +41,7 @@ function imgOpen(event) {
         document.addEventListener("keydown", imgClose);
       },
       onClose: (instance) => {
-        imagesContainer.removeEventListener("keydown", imgClose);
+        document.removeEventListener("keydown", imgClose);
       },
     });
     instanse.show();
