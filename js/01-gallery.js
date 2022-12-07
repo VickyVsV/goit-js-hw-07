@@ -27,7 +27,7 @@ galleryItems.forEach(({preview, original, description}) => {
 });
 
 imagesContainer.addEventListener("click", imgOpen);
-imagesContainer.addEventListener('keydown', imgClose);//Закрытие по нажатию на кнопку 'Escape'
+//document.addEventListener('keydown', imgClose);//Закрытие по нажатию на кнопку 'Escape'
 
 function imgOpen(event) {
   event.preventDefault();
@@ -36,7 +36,14 @@ function imgOpen(event) {
 
   if (nodeNameEl === "IMG") {
     const selectedImg = event.target.dataset.source;
-    instanse = basicLightbox.create(`<img src=${selectedImg}>`);
+    instanse = basicLightbox.create(`<img src=${selectedImg}>`,{
+      onShow: (instance) => {
+        document.addEventListener("keydown", imgClose);
+      },
+      onClose: (instance) => {
+        imagesContainer.removeEventListener("keydown", imgClose);
+      },
+    });
     instanse.show();
   }
   return;
