@@ -3,6 +3,7 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const imagesContainer = document.querySelector(`.gallery`);
+let imagesArray = [];
 let instanse;
 
 galleryItems.forEach(({preview, original, description}) => {
@@ -22,6 +23,7 @@ galleryItems.forEach(({preview, original, description}) => {
   imagesContainer.append(containerEl);
   containerEl.append(linkEl);
   linkEl.append(imgEl);
+  imagesArray.push(imagesContainer);
 });
 
 imagesContainer.addEventListener("click", imgOpen);
